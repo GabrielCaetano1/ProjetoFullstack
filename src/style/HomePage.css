@@ -1,0 +1,24 @@
+.homepage-container {
+  padding: 40px;
+  text-align: center;
+  font-weight: 600;
+  color: #f073c8;
+}
+
+.user-list {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.user-card {
+  background-color: #242e4c;
+  border: 1px solid #171f38;
+  padding: 20px;
+  width: 260px;
+  border-radius: 10px;
+  text-align: left;
+  color: #97a5ce
+}
