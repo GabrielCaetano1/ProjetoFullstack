@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import "../style/userForm.css";
+import "../style/UserForm.css";
 import userService from "../service/userService.js";
 
 function UserForm() {
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     password: "",
-    birthday: "",
     email: "",
+    birthday: "",
+    phone: ""
   });
 
   const [errors, setErrors] = useState({});
@@ -27,8 +28,8 @@ function UserForm() {
     const newErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (formData.name.length < 3)
-      newErrors.name = "O nome de usuário deve ter pelo menos 3 caracteres.";
+    if (formData.username.length < 3)
+      newErrors.username = "O nome de usuário deve ter pelo menos 3 caracteres.";
 
     if (formData.password.length < 6)
       newErrors.password = "A senha deve ter pelo menos 6 caracteres.";
@@ -49,14 +50,18 @@ function UserForm() {
     event.preventDefault();
     setIsSubmitting(true);
 
-    if (!validate()) return;
+    if (!validate()) { 
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       const response = await userService.createUser(formData);
+      
       Swal.fire({
         icon: "success",
         title: "Usuário cadastrado!",
-        showConfirmButton: "Ir para HomePage",
+        confirmButtonText: "Ir para HomePage",
         background: "#242e4c",
         color: "#fff",
         confirmButtonColor: "#f073c8",
@@ -90,13 +95,13 @@ function UserForm() {
           <label>Username:</label>
           <input
             type="text"
-            name="name"
-            value={formData.name}
+            name="username"
+            value={formData.username}
             onChange={handleChange}
-            className={errors.name && isSubmitting ? "input-error" : ""}
+            className={errors.username && isSubmitting ? "input-error" : ""}
           />
-          {errors.name && isSubmitting && (
-            <p className="error-message">{errors.name}</p>
+          {errors.username && isSubmitting && (
+            <p className="error-message">{errors.username}</p>
           )}
         </div>
 
@@ -125,6 +130,18 @@ function UserForm() {
           />
           {errors.birthday && isSubmitting && (
             <p className="error-message">{errors.birthday}</p>
+          )}
+        </div>
+        <div>
+          <label>Telefone:</label>
+          <input 
+          type="tel"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+          className={errors.phone && isSubmitting ? "input-error" : ""} />
+          {errors.phone && isSubmitting && (
+            <p className="error-message">{errors.phone}</p>
           )}
         </div>
 

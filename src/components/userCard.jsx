@@ -3,9 +3,10 @@ import "../style/UserCard.css";
 function UserCard({ user, onEdit, onDelete }) {
     return (
         <div className="user-card">
-            <h3>{user.name}</h3>
+            <h3>{user.username}</h3>
             <p>Email: {user.email}</p>
             <p>Data de Nascimento: {new Date(user.birthday).toLocaleDateString("pt-Br")}</p>
+            <p>Telefone: {user.phone}</p>
             <div className="user-card-buttons">
                 <button 
                     className="btn-edit" 

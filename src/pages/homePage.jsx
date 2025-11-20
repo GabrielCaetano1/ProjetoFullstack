@@ -78,7 +78,7 @@ function HomePage() {
         <div className="homepage-container">
             <div>
                 <h1>Lista de usuarios cadastrados:</h1>
-                {users.length === 0 && (<p style={{color: "#fff"}}>Nenhum usuário encontrado.</p>)}
+                {users.length === 0 && (<p style={{color: "#fff"}}>Nenhum usuário encontrado!!!</p>)}
                 <div className="user-list">
                     {users.map((user) => (
                         <UserCard 

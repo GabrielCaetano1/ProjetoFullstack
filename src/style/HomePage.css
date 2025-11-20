@@ -1,24 +1,47 @@
-.homepage-container {
-  padding: 40px;
-  text-align: center;
-  font-weight: 600;
-  color: #f073c8;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
 }
+
+.homepage-container {
+    display: flex;  
+    min-height: 100vh;
+    padding: 40px 20px;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+}
+
+.homepage-container h1 {
+    text-align: center;
+    text-shadow: 0 0 8px rgba(240, 115, 200, 0.5);
+    color: #f073c8;
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+/* .homepage-container p {
+    text-align: center;
+    font-size: 1.1rem;
+} */
+
 
 .user-list {
-  margin-top: 20px;
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    align-items: stretch;
+    padding: 0 20px;
 }
 
-.user-card {
-  background-color: #242e4c;
-  border: 1px solid #171f38;
-  padding: 20px;
-  width: 260px;
-  border-radius: 10px;
-  text-align: left;
-  color: #97a5ce
+@media (max-width: 768px) {
+  .homepage-container h1 {
+    font-size: 1.6rem;
+  }
+
+  .user-list {
+    grid-template-columns: 1fr;
+  }
 }
