@@ -5,7 +5,18 @@
   gap: 20px;
   justify-content: start;
   align-items: center;
-  border-radius: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.navbar.scrolled {
+  background-color: rgba(36, 46, 76, 0.85);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  /* transition: background-color 0.3s ease, box-shadow 0.3s ease; */
 }
 
 .navbar img {

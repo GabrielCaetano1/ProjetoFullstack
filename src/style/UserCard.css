@@ -2,22 +2,22 @@
   background-color: #242e4c;
   padding: 20px;
   border-radius: 10px;
-  width: auto; /* adapta o conteúdo */
-  min-width: 250px; /* evita de ficar pequeno demais */
-  max-width: 350px; /* limita pra não estourar */
+  width: 350px;
+  min-height: 210px;
   color: #97a5ce;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  justify-content: space-between;
+  gap: 8px;
+  /* word-wrap: break-word; */
+  /* overflow-wrap: break-word; */
   transition: transform 0.2s ease;
 }
 
 .user-card:hover {
   transform: scale(1.03);
-  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); */
-  box-shadow: 0 0 15px rgba(240, 115, 200, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0 0 15px rgba(240, 115, 200, 0.3); */
 }
 
 .user-card h3 {

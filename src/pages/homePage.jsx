@@ -3,11 +3,14 @@ import Swal from "sweetalert2";
 import "../style/homePage.css";
 import userService from "../service/userService.js";
 import UserCard from "../components/userCard.jsx";
+import EditUserModal from "../components/editUserModal.jsx";
 
 function HomePage() {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [selectedUser, setSelectedUser] = useState(null);
+    const [showModal, setShowModal] = useState(false);
 
     const fetchUsers = async () => {
         try {
@@ -26,7 +29,7 @@ function HomePage() {
 
     const handleDelete = async (user) => {        
         const confirm = await Swal.fire({
-            title: `Excluir usuário ${user.name}?`,
+            title: `Excluir usuário ${user.username}?`,
             text: "Essa ação não pode ser desfeita.",
             icon: "warning",
             showCancelButton: true,
@@ -63,6 +66,33 @@ function HomePage() {
 
     }
 
+    const handleEditClick = (user) => {
+        setSelectedUser(user);
+        setShowModal(true);
+    };
+
+    const handleEdit = async (user, data) => {
+        try {
+            await userService.editUser(user.id, data);
+            await fetchUsers();
+            Swal.fire({
+                title: "Usuário atualizado!",
+                icon: "success",
+                confirmButtonColor: "#f073c8",
+                background: "#242e4c",
+                color: "#fff",
+            });
+        } catch (error) {
+            Swal.fire({
+                title: "Erro ao atualizar usuário.",
+                icon: "error",
+                text: "Falha ao tentar atualizar o usuário.",
+                background: "#242e4c",
+                color: "#fff"
+            })
+        }
+    };
+
     useEffect(() => {
         fetchUsers();
     }, []);
@@ -84,9 +114,18 @@ function HomePage() {
                         <UserCard 
                         key={user.id} 
                         user={user}
-                        onDelete={handleDelete} />
+                        onDelete={handleDelete}
+                        onEdit={handleEditClick} />
                     ))}
                 </div>
+
+                {showModal && (
+                    <EditUserModal
+                    user={selectedUser}
+                    onClose={() => setShowModal(false)}
+                    onSave={handleEdit}
+                    />
+                )}
             </div>
         </div>
     )

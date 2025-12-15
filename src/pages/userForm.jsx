@@ -62,6 +62,7 @@ function UserForm() {
     try {
       const cleanData = {
         ...formData,
+        birthday: formData.birthday ? formData.birthday : null,
         phone: formData.phone.replace(/\D/g, "") // remove formatação pra enviar pro back
       }
       const response = await userService.createUser(cleanData);
